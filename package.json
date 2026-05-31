@@ -1,0 +1,19 @@
+{
+  "name": "legacy-workspace-favicons",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Restores older Google Workspace favicons in Chrome tabs.",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "validate": "node scripts/validate-extension.mjs",
+    "generate:icons": "node scripts/generate-extension-icons.mjs",
+    "smoke:chrome": "node scripts/chrome-smoke.mjs",
+    "package": "npm run validate && npm test && node scripts/package-extension.mjs"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "playwright": "^1.60.0",
+    "sharp": "^0.34.5"
+  }
+}

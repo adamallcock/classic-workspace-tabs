@@ -1,0 +1,69 @@
+{
+  "manifest_version": 3,
+  "name": "Legacy Workspace Favicons",
+  "version": "0.1.0",
+  "description": "Restores older Google Workspace favicons in Chrome tabs.",
+  "icons": {
+    "16": "icons/extension-16.png",
+    "32": "icons/extension-32.png",
+    "48": "icons/extension-48.png",
+    "128": "icons/extension-128.png"
+  },
+  "permissions": [],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://mail.google.com/*",
+        "https://calendar.google.com/*",
+        "https://drive.google.com/*",
+        "https://docs.google.com/document/*",
+        "https://docs.google.com/spreadsheets/*",
+        "https://docs.google.com/presentation/*",
+        "https://docs.google.com/forms/*",
+        "https://meet.google.com/*",
+        "https://chat.google.com/*",
+        "https://keep.google.com/*",
+        "https://contacts.google.com/*",
+        "https://tasks.google.com/*",
+        "https://voice.google.com/*",
+        "https://admin.google.com/*"
+      ],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/gmail.svg",
+        "icons/calendar.svg",
+        "icons/drive.svg",
+        "icons/docs.svg",
+        "icons/sheets.svg",
+        "icons/slides.svg",
+        "icons/forms.svg",
+        "icons/meet.svg",
+        "icons/chat.svg",
+        "icons/keep.svg",
+        "icons/contacts.svg",
+        "icons/tasks.svg",
+        "icons/voice.svg",
+        "icons/admin.svg"
+      ],
+      "matches": [
+        "https://mail.google.com/*",
+        "https://calendar.google.com/*",
+        "https://drive.google.com/*",
+        "https://docs.google.com/*",
+        "https://meet.google.com/*",
+        "https://chat.google.com/*",
+        "https://keep.google.com/*",
+        "https://contacts.google.com/*",
+        "https://tasks.google.com/*",
+        "https://voice.google.com/*",
+        "https://admin.google.com/*"
+      ]
+    }
+  ]
+}
+

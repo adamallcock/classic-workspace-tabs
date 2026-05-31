@@ -1,0 +1,11 @@
+.DS_Store
+node_modules/
+dist/
+coverage/
+tmp/
+docs/
+notes/
+screenshots/
+*.crx
+*.zip
+*.log
