@@ -4,15 +4,15 @@ This is draft store copy for a future public release. Do not submit a package th
 
 ## Name
 
-Legacy Workspace Favicons
+Classic Workspace Tabs
 
 ## Short Description
 
-Restore distinct Google Workspace tab favicons with a tiny, privacy-first extension.
+Restore distinct Google Workspace tab icons with a tiny, privacy-first extension.
 
 ## Detailed Description
 
-Legacy Workspace Favicons restores distinct tab favicons for supported Google Workspace apps, making it easier to tell Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Chat, Keep, Forms, and related tabs apart at a glance.
+Classic Workspace Tabs restores distinct tab icons for supported Google Workspace apps, making it easier to tell Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Chat, Keep, Forms, and related tabs apart at a glance.
 
 The extension is intentionally small. It does one thing: it replaces the favicon link in supported Google Workspace pages with an icon bundled inside the extension.
 
@@ -65,7 +65,7 @@ It uses content script URL matches for specific Google Workspace apps so it can 
 
 ## Privacy Practices
 
-Legacy Workspace Favicons does not collect, store, transmit, sell, or analyze user data.
+Classic Workspace Tabs does not collect, store, transmit, sell, or analyze user data.
 
 The extension has no backend, no analytics, no tracking, no remote code, and no account system. It only replaces tab favicon links on supported Google Workspace pages using icon files bundled inside the extension.
 
@@ -95,4 +95,3 @@ Suggested screenshot set:
 - Run `npm run validate`.
 - Run `npm test`.
 - Run `npm run package`.
-

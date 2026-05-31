@@ -1,6 +1,6 @@
-# Legacy Workspace Favicons
+# Classic Workspace Tabs
 
-A tiny Chrome extension that restores distinct tab favicons for supported Google Workspace apps.
+A tiny Chrome extension that restores distinct tab icons for supported Google Workspace apps.
 
 It is intentionally narrow:
 
@@ -35,13 +35,13 @@ The content script runs only on explicit Google Workspace URLs and only replaces
 
 ## Privacy
 
-Legacy Workspace Favicons does not collect, store, transmit, sell, or analyze any user data. It has no server, no analytics, no tracking, no remote code, and no account system. The extension only replaces the tab favicon on supported Google Workspace pages using icon files bundled inside the extension.
+Classic Workspace Tabs does not collect, store, transmit, sell, or analyze any user data. It has no server, no analytics, no tracking, no remote code, and no account system. The extension only replaces the tab favicon on supported Google Workspace pages using icon files bundled inside the extension.
 
 See [PRIVACY.md](PRIVACY.md).
 
 ## Icon Assets
 
-This repository currently ships placeholder product favicons, not Google-owned icon artwork. Do not publish a build containing Google Workspace icon assets unless the right to redistribute those assets has been confirmed.
+This repository ships placeholder product favicons, not Google-owned icon artwork. For private local builds, put your own SVG files in a gitignored `private-icons/` folder and run `npm run package:private`. That overlays the private icons into `dist/classic-workspace-tabs-0.1.0/` without committing them to git.
 
 See [ASSETS.md](ASSETS.md).
 
@@ -66,6 +66,18 @@ npm run package
 
 `npm run package` creates a local release zip under `dist/`. The `dist/` folder is ignored and should not be committed.
 
+For a local-only package with private icon files:
+
+```bash
+mkdir -p private-icons
+# Add gmail.svg, calendar.svg, drive.svg, docs.svg, sheets.svg, slides.svg,
+# forms.svg, meet.svg, chat.svg, keep.svg, contacts.svg, tasks.svg,
+# voice.svg, and admin.svg to private-icons/.
+npm run package:private
+```
+
+Load `dist/classic-workspace-tabs-0.1.0/` as the unpacked extension.
+
 ## Permission Model
 
 `manifest.json` uses:
@@ -79,4 +91,3 @@ npm run package
 ## Trademark
 
 This project is not affiliated with, endorsed by, or sponsored by Google. Google Workspace product names and logos are trademarks of Google LLC.
-

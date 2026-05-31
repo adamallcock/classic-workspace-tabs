@@ -8,7 +8,7 @@ const core = require("../content.js");
 
 const runtime = {
   getURL(path) {
-    return `chrome-extension://legacy-workspace-favicons/${path}`;
+    return `chrome-extension://classic-workspace-tabs/${path}`;
   }
 };
 
@@ -100,7 +100,7 @@ test("replaces competing favicons with one extension-managed favicon", () => {
   assert.equal(favicons.length, 1);
   assert.equal(favicons[0].dataset.legacyWorkspaceFavicon, "true");
   assert.equal(favicons[0].dataset.legacyWorkspaceApp, "Gmail");
-  assert.equal(favicons[0].href, "chrome-extension://legacy-workspace-favicons/icons/gmail.svg");
+  assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/gmail.svg");
 
   assert.ok(dom.window.document.head.querySelector('link[rel="stylesheet"]'));
   assert.ok(dom.window.document.head.querySelector('link[rel="canonical"]'));
@@ -140,7 +140,7 @@ test("reapplying the same favicon does not create duplicates", () => {
 
   const favicons = iconLinks(dom.window.document);
   assert.equal(favicons.length, 1);
-  assert.equal(favicons[0].href, "chrome-extension://legacy-workspace-favicons/icons/drive.svg");
+  assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/drive.svg");
 });
 
 test("mutation observer restores the extension favicon when a page adds a competing favicon", async () => {
@@ -169,8 +169,7 @@ test("mutation observer restores the extension favicon when a page adds a compet
 
   const favicons = iconLinks(dom.window.document);
   assert.equal(favicons.length, 1);
-  assert.equal(favicons[0].href, "chrome-extension://legacy-workspace-favicons/icons/sheets.svg");
+  assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/sheets.svg");
 
   controller.disconnect();
 });
-

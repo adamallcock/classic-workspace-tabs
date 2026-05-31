@@ -1,8 +1,35 @@
 # Icon Assets
 
-This repository currently includes generated placeholder product favicons. They are not Google Workspace icon artwork.
+This repository includes generated placeholder product favicons. They are not Google Workspace icon artwork.
 
-The extension is designed so private/local users can replace placeholders with icon assets they are allowed to use. Do not publish a public build containing Google-owned Workspace icon assets unless the right to redistribute those assets has been confirmed.
+The extension is designed so private/local users can build with their own icon assets without committing those assets to git.
+
+For local-only packages, create a gitignored `private-icons/` directory with these filenames:
+
+- `gmail.svg`
+- `calendar.svg`
+- `drive.svg`
+- `docs.svg`
+- `sheets.svg`
+- `slides.svg`
+- `forms.svg`
+- `meet.svg`
+- `chat.svg`
+- `keep.svg`
+- `contacts.svg`
+- `tasks.svg`
+- `voice.svg`
+- `admin.svg`
+
+Then run:
+
+```bash
+npm run package:private
+```
+
+The private icons are copied into the generated `dist/classic-workspace-tabs-0.1.0/` package only. They are not copied into tracked source files.
+
+Do not publish a public build containing Google-owned Workspace icon assets unless the right to redistribute those assets has been confirmed.
 
 The extension icon files, `icons/extension-*.png`, are generated generic icons for this project and do not use Google's logo.
 

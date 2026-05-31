@@ -23,7 +23,7 @@ function validateMatch(pattern, context) {
 }
 
 if (manifest.manifest_version !== 3) fail("manifest_version must be 3");
-if (manifest.name !== "Legacy Workspace Favicons") fail("name mismatch");
+if (manifest.name !== "Classic Workspace Tabs") fail("name mismatch");
 if (manifest.version !== "0.1.0") fail("version mismatch");
 if (!Array.isArray(manifest.permissions) || manifest.permissions.length !== 0) {
   fail("permissions must be exactly []");

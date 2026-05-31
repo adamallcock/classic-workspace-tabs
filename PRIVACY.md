@@ -1,6 +1,6 @@
 # Privacy
 
-Legacy Workspace Favicons does not collect, store, transmit, sell, or analyze any user data.
+Classic Workspace Tabs does not collect, store, transmit, sell, or analyze any user data.
 
 The extension has:
 
@@ -16,4 +16,3 @@ The extension has:
 - no tab API access
 
 The extension only replaces favicon `<link>` elements in `document.head` on supported Google Workspace pages using icon files bundled inside the extension.
-

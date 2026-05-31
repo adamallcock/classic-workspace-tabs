@@ -6,6 +6,7 @@ tmp/
 docs/
 notes/
 screenshots/
+private-icons/
 *.crx
 *.zip
 *.log
