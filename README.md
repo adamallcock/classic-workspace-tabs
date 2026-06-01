@@ -41,7 +41,7 @@ See [PRIVACY.md](PRIVACY.md).
 
 ## Icon Assets
 
-This repository ships placeholder product favicons, not Google-owned icon artwork. For private local builds, put your own SVG files in a gitignored `private-icons/` folder and run `npm run package:private`. That overlays the private icons into `dist/classic-workspace-tabs-0.1.0/` without committing them to git.
+This repository ships bundled classic Google Workspace-style product favicons with confirmed rights for this project, so the extension is ready to load locally or package for distribution. You can also put replacement SVG files in a gitignored `private-icons/` folder and run `npm run package:private`. That overlays the replacement icons into `dist/classic-workspace-tabs-0.1.0/` without changing tracked source files.
 
 See [ASSETS.md](ASSETS.md).
 
@@ -66,7 +66,7 @@ npm run package
 
 `npm run package` creates a local release zip under `dist/`. The `dist/` folder is ignored and should not be committed.
 
-For a local-only package with private icon files:
+For a package with replacement icon files:
 
 ```bash
 mkdir -p private-icons

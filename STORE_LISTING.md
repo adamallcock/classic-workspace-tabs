@@ -1,6 +1,6 @@
-# Chrome Web Store Listing Draft
+# Chrome Web Store Dashboard Text
 
-This is draft store copy for a future public release. Do not submit a package that bundles Google-owned icon assets unless the right to redistribute those assets has been confirmed.
+Use this as paste-ready copy for the Chrome Web Store Developer Dashboard.
 
 ## Name
 
@@ -63,15 +63,64 @@ The extension requests no Chrome extension permissions.
 
 It uses content script URL matches for specific Google Workspace apps so it can replace favicon link elements on those pages. It does not request access to all websites and does not use broad Google host patterns.
 
+## Host Permission Justification
+
+The extension does not request `host_permissions`.
+
+The manifest uses explicit content script matches for supported Google Workspace URLs only. The content script runs on those pages to replace favicon link elements in the document head.
+
 ## Privacy Practices
 
 Classic Workspace Tabs does not collect, store, transmit, sell, or analyze user data.
 
 The extension has no backend, no analytics, no tracking, no remote code, and no account system. It only replaces tab favicon links on supported Google Workspace pages using icon files bundled inside the extension.
 
+## Data Usage Declaration
+
+Data collection: no user data is collected.
+
+Personally identifiable information: not collected.
+
+Health information: not collected.
+
+Financial and payment information: not collected.
+
+Authentication information: not collected.
+
+Personal communications: not collected.
+
+Location: not collected.
+
+Web history: not collected.
+
+User activity: not collected.
+
+Website content: not collected.
+
+Limited Use statement: not applicable because the extension does not collect or transmit user data.
+
 ## Suggested Category
 
 Productivity
+
+## Distribution
+
+Visibility: Public
+
+Pricing: Free
+
+Regions: All regions, unless you want to limit launch scope.
+
+## Test Instructions
+
+No test account or credentials are required.
+
+To test:
+
+1. Install the extension in Chrome.
+2. Open a supported Google Workspace URL, such as Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Chat, Keep, Contacts, Tasks, Voice, or Admin.
+3. Confirm the tab favicon is replaced with the bundled app-specific icon.
+4. Open an unsupported URL and confirm the extension does not change the favicon.
 
 ## Suggested Screenshots
 
@@ -85,7 +134,7 @@ Suggested screenshot set:
 
 ## Store Submission Checklist
 
-- Confirm public package contains only legally distributable icon assets.
+- Confirm bundled icon distribution rights still cover the submitted package.
 - Confirm screenshots contain no personal or customer data.
 - Confirm copy does not imply Google affiliation, endorsement, or sponsorship.
 - Confirm `manifest.json` still has `permissions: []`.
