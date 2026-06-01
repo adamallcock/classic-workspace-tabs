@@ -1,5 +1,11 @@
 # Classic Workspace Tabs
 
+[![CI](https://github.com/adamallcock/classic-workspace-tabs/actions/workflows/ci.yml/badge.svg)](https://github.com/adamallcock/classic-workspace-tabs/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/github/license/adamallcock/classic-workspace-tabs)](LICENSE)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-1a73e8)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
+[![Permissions: none](https://img.shields.io/badge/permissions-none-188038)](manifest.json)
+[![Chrome Web Store: pending](https://img.shields.io/badge/Chrome%20Web%20Store-pending-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej)
+
 A tiny Chrome extension that restores distinct tab icons for supported Google Workspace apps.
 
 It is intentionally narrow:
