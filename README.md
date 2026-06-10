@@ -8,7 +8,9 @@
 
 A tiny Chrome extension that restores distinct tab icons for supported Google Workspace apps.
 
-![Classic Workspace Tabs preview](store-assets/screenshot-1280x800.png)
+![Classic Workspace Tabs preview](store-assets/marquee-promo-1400x560.png)
+
+https://github.com/user-attachments/assets/64889ac5-0129-4bd9-8d5c-a9b34a0374a6
 
 [Chrome Web Store listing](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej)
 
