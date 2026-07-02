@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Classic Workspace Tabs",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Restores distinct Google Workspace tab icons in Chrome.",
   "icons": {
     "16": "icons/extension-16.png",

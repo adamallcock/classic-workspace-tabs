@@ -29,9 +29,9 @@ Then run:
 npm run package:private
 ```
 
-The replacement icons are copied into the generated `dist/classic-workspace-tabs-0.1.0/` package only. They are not copied into tracked source files.
+The replacement icons are copied into the generated `dist/classic-workspace-tabs-<version>/` package only. They are not copied into tracked source files.
 
-The extension icon files, `icons/extension-*.png`, are generated generic icons for this project and do not use Google's logo.
+The extension icon files, `icons/extension-*.png`, are generated from `store-assets/store-icon-128.png` so the installed extension icon matches the Chrome Web Store listing icon.
 
 ## SVG sources
 

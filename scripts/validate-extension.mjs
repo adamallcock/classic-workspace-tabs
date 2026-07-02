@@ -3,8 +3,12 @@ import { resolve } from "node:path";
 
 const root = process.cwd();
 const manifestPath = resolve(root, "manifest.json");
+const packageJsonPath = resolve(root, "package.json");
+const packageLockPath = resolve(root, "package-lock.json");
 const contentPath = resolve(root, "content.js");
 const manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8"));
+const packageLock = JSON.parse(readFileSync(packageLockPath, "utf8"));
 const content = readFileSync(contentPath, "utf8");
 const errors = [];
 
@@ -24,7 +28,11 @@ function validateMatch(pattern, context) {
 
 if (manifest.manifest_version !== 3) fail("manifest_version must be 3");
 if (manifest.name !== "Classic Workspace Tabs") fail("name mismatch");
-if (manifest.version !== "0.1.0") fail("version mismatch");
+if (manifest.version !== packageJson.version) fail("manifest version must match package.json");
+if (manifest.version !== packageLock.version) fail("manifest version must match package-lock.json");
+if (manifest.version !== packageLock.packages?.[""]?.version) {
+  fail("manifest version must match package-lock root package version");
+}
 if (!Array.isArray(manifest.permissions) || manifest.permissions.length !== 0) {
   fail("permissions must be exactly []");
 }

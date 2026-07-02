@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-06-10
+
+- Changed the packaged extension icons to match the Chrome Web Store listing icon.
+- Updated extension icon generation to derive manifest icons from `store-assets/store-icon-128.png`.
+- Added a regression test for the extension icon generator.
+
 ## 0.1.0 - 2026-05-31
 
 - Added the initial Manifest V3 extension.
