@@ -4,4 +4,4 @@ The product favicon files in this directory are bundled classic Google Workspace
 
 For packages with replacement icons, put your own icon files in the gitignored `private-icons/` directory and run `npm run package:private`. That overlays those files into `dist/` without changing tracked source files.
 
-The `extension-*.png` files are generated generic extension icons and do not use Google's logo.
+The `extension-*.png` files are generated from `store-assets/store-icon-128.png` and should match the Chrome Web Store listing icon.

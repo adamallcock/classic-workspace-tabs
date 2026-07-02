@@ -2,6 +2,10 @@
 
 Use this as paste-ready copy for the Chrome Web Store Developer Dashboard.
 
+Before publishing or updating the listing, compare this copy with the live
+Chrome Web Store listing, `manifest.json`, `README.md`, and the release
+checklist in `docs/runbooks/2026-07-02-release-checklist.md`.
+
 ## Name
 
 Classic Workspace Tabs
@@ -144,3 +148,6 @@ Suggested screenshot set:
 - Run `npm run validate`.
 - Run `npm test`.
 - Run `npm run package`.
+- Run `npm run smoke:chrome` when local Chromium and `openssl` are available.
+- Confirm the README Chrome Web Store badge and listing link match the current
+  public store state.
