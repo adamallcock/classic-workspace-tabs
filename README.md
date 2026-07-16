@@ -14,6 +14,8 @@ https://github.com/user-attachments/assets/64889ac5-0129-4bd9-8d5c-a9b34a0374a6
 
 [Chrome Web Store listing](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej?utm_source=github&utm_medium=referral&utm_campaign=pre2026-icons)
 
+[Project website](https://adamallcock.github.io/classic-workspace-tabs/)
+
 It is intentionally narrow:
 
 - no popup

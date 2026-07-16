@@ -52,10 +52,16 @@ function validateResource(resource) {
 
 if (manifest.manifest_version !== 3) fail("manifest_version must be 3");
 if (manifest.name !== "__MSG_extensionName__") fail("name must use the localized extensionName message");
+if (manifest.short_name !== "__MSG_extensionShortName__") {
+  fail("short_name must use the localized extensionShortName message");
+}
 if (manifest.description !== "__MSG_extensionDescription__") {
   fail("description must use the localized extensionDescription message");
 }
 if (manifest.default_locale !== "en") fail("default_locale must be en");
+if (manifest.homepage_url !== "https://adamallcock.github.io/classic-workspace-tabs/") {
+  fail("homepage_url must point to the production landing page");
+}
 if (manifest.version !== packageJson.version) fail("manifest version must match package.json");
 if (manifest.version !== packageLock.version) fail("manifest version must match package-lock.json");
 if (manifest.version !== packageLock.packages?.[""]?.version) {
@@ -134,6 +140,10 @@ for (const locale of ["en", "es", "de"]) {
 
   const messages = JSON.parse(readFileSync(localePath, "utf8"));
   if (!messages.extensionName?.message) fail(`${locale} extensionName message is required`);
+  if (!messages.extensionShortName?.message) fail(`${locale} extensionShortName message is required`);
+  if ([...messages.extensionShortName?.message || ""].length > 12) {
+    fail(`${locale} extensionShortName must be 12 characters or fewer`);
+  }
   if (!messages.extensionDescription?.message) {
     fail(`${locale} extensionDescription message is required`);
   }
