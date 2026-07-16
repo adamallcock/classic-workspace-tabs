@@ -8,6 +8,10 @@
 
 A tiny Chrome extension that restores familiar pre-2026 tab icons for supported Google Workspace apps.
 
+![Classic Workspace Tabs preview](store-assets/marquee-promo-1400x560.png)
+
+https://github.com/user-attachments/assets/64889ac5-0129-4bd9-8d5c-a9b34a0374a6
+
 [Chrome Web Store listing](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej?utm_source=github&utm_medium=referral&utm_campaign=pre2026-icons)
 
 It is intentionally narrow:
