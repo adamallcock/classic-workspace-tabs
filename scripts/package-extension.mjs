@@ -23,6 +23,7 @@ await mkdir(packageDir, { recursive: true });
 for (const entry of [
   "manifest.json",
   "content.js",
+  "_locales",
   "icons",
   "README.md",
   "CHANGELOG.md",
@@ -58,6 +59,19 @@ if (privateIconDir) {
   }
 
   console.log(`Overlayed private icons from ${privateIconDir}`);
+}
+
+const calendarIcons = spawnSync(
+  process.execPath,
+  [resolve(root, "scripts", "generate-calendar-icons.mjs"), "--root", packageDir],
+  {
+    cwd: root,
+    stdio: "inherit"
+  }
+);
+
+if (calendarIcons.status !== 0) {
+  throw new Error("Calendar icon generation failed");
 }
 
 const zip = spawnSync("zip", ["-qr", zipPath, "."], {

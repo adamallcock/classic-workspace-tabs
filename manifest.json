@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Classic Workspace Tabs",
-  "version": "0.1.1",
-  "description": "Restores distinct Google Workspace tab icons in Chrome.",
+  "name": "__MSG_extensionName__",
+  "version": "0.2.0",
+  "description": "__MSG_extensionDescription__",
+  "default_locale": "en",
   "icons": {
     "16": "icons/extension-16.png",
     "32": "icons/extension-32.png",
@@ -37,6 +38,7 @@
       "resources": [
         "icons/gmail.svg",
         "icons/calendar.svg",
+        "icons/calendar-days/*.png",
         "icons/drive.svg",
         "icons/docs.svg",
         "icons/sheets.svg",

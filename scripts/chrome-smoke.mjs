@@ -26,7 +26,7 @@ const openssl = spawnSync(
     "-subj",
     "/CN=mail.google.com",
     "-addext",
-    "subjectAltName=DNS:mail.google.com,DNS:docs.google.com,DNS:www.google.com",
+    "subjectAltName=DNS:mail.google.com,DNS:calendar.google.com,DNS:docs.google.com,DNS:www.google.com",
     "-keyout",
     keyPath,
     "-out",
@@ -72,7 +72,7 @@ try {
       "--no-first-run",
       "--no-default-browser-check",
       "--ignore-certificate-errors",
-      `--host-resolver-rules=MAP mail.google.com 127.0.0.1:${port}, MAP docs.google.com 127.0.0.1:${port}, MAP www.google.com 127.0.0.1:${port}`
+      `--host-resolver-rules=MAP mail.google.com 127.0.0.1:${port}, MAP calendar.google.com 127.0.0.1:${port}, MAP docs.google.com 127.0.0.1:${port}, MAP www.google.com 127.0.0.1:${port}`
     ]
   });
 
@@ -133,6 +133,33 @@ try {
 
   if (gmail.app !== "Gmail" || !gmail.href.endsWith("/icons/gmail.svg") || !gmail.fetchOk) {
     throw new Error(`Gmail smoke failed: ${JSON.stringify(gmail)}`);
+  }
+
+  await page.goto("https://calendar.google.com/calendar/u/0/r", {
+    waitUntil: "domcontentloaded"
+  });
+  await page.waitForFunction(
+    () => Boolean(document.head.querySelector('link[data-legacy-workspace-favicon="true"]')),
+    null,
+    { timeout: 10000 }
+  );
+
+  const calendar = await page.evaluate(async () => {
+    const link = document.head.querySelector('link[data-legacy-workspace-favicon="true"]');
+    const response = await fetch(link.href);
+    return {
+      app: link.dataset.legacyWorkspaceApp,
+      href: link.href,
+      fetchOk: response.ok
+    };
+  });
+
+  if (
+    calendar.app !== "Google Calendar" ||
+    !/\/icons\/calendar-days\/\d{2}\.png$/.test(calendar.href) ||
+    !calendar.fetchOk
+  ) {
+    throw new Error(`Calendar smoke failed: ${JSON.stringify(calendar)}`);
   }
 
   await page.goto("https://docs.google.com/spreadsheets/d/local/edit", {

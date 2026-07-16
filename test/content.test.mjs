@@ -26,9 +26,10 @@ function iconLinks(document) {
 }
 
 test("matches each supported Google Workspace URL to the expected icon", () => {
+  const now = new Date(2026, 6, 16, 12, 0, 0);
   const cases = [
     ["https://mail.google.com/mail/u/0/#inbox", "gmail.svg"],
-    ["https://calendar.google.com/calendar/u/0/r", "calendar.svg"],
+    ["https://calendar.google.com/calendar/u/0/r", "calendar-days/16.png"],
     ["https://drive.google.com/drive/my-drive", "drive.svg"],
     ["https://docs.google.com/document/d/abc/edit", "docs.svg"],
     ["https://docs.google.com/spreadsheets/d/abc/edit", "sheets.svg"],
@@ -46,8 +47,16 @@ test("matches each supported Google Workspace URL to the expected icon", () => {
   for (const [url, expectedIcon] of cases) {
     const rule = core.getMatchingRule(url);
     assert.ok(rule, `${url} should match a rule`);
-    assert.equal(rule.icon, expectedIcon);
+    assert.equal(core.getIconFileName(rule, now), expectedIcon);
   }
+});
+
+test("uses the local calendar day and calculates the next local midnight", () => {
+  const lateEvening = new Date(2026, 6, 16, 23, 59, 30, 0);
+  const calendarRule = core.getMatchingRule("https://calendar.google.com/calendar/u/0/r");
+
+  assert.equal(core.getIconFileName(calendarRule, lateEvening), "calendar-days/16.png");
+  assert.equal(core.millisecondsUntilNextDay(lateEvening), 30_000);
 });
 
 test("does not match unsupported Google and non-Google URLs", () => {
@@ -141,6 +150,40 @@ test("reapplying the same favicon does not create duplicates", () => {
   const favicons = iconLinks(dom.window.document);
   assert.equal(favicons.length, 1);
   assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/drive.svg");
+});
+
+test("refreshes a Calendar favicon after the local date changes", () => {
+  const dom = createDom("https://calendar.google.com/calendar/u/0/r");
+  let now = new Date(2026, 6, 16, 23, 59, 59, 900);
+  let scheduled;
+  let clearedTimer;
+  const env = {
+    document: dom.window.document,
+    location: dom.window.location,
+    chromeRuntime: runtime,
+    now: () => now,
+    setTimeout(callback, delay) {
+      scheduled = { callback, delay, id: 42 };
+      return scheduled.id;
+    },
+    clearTimeout(id) {
+      clearedTimer = id;
+    }
+  };
+
+  core.applyLegacyFavicon(env);
+  const refresh = core.scheduleCalendarRefresh(env);
+
+  assert.equal(iconLinks(dom.window.document)[0].href, "chrome-extension://classic-workspace-tabs/icons/calendar-days/16.png");
+  assert.equal(scheduled.delay, 200);
+
+  now = new Date(2026, 6, 17, 0, 0, 0, 100);
+  scheduled.callback();
+
+  assert.equal(iconLinks(dom.window.document)[0].href, "chrome-extension://classic-workspace-tabs/icons/calendar-days/17.png");
+
+  refresh.cancel();
+  assert.equal(clearedTimer, 42);
 });
 
 test("mutation observer restores the extension favicon when a page adds a competing favicon", async () => {

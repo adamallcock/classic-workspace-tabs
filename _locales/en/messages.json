@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Classic Tab Icons for Google Workspace™",
+    "description": "The extension name shown in Chrome and the Chrome Web Store."
+  },
+  "extensionDescription": {
+    "message": "Restores familiar pre-2026 Google Workspace tab icons with no permissions, tracking, or remote requests.",
+    "description": "A concise summary of the extension."
+  }
+}

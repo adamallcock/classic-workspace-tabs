@@ -12,6 +12,7 @@
     Object.freeze({
       name: "Google Calendar",
       icon: "calendar.svg",
+      dynamicIcon: "calendar-date",
       matches: ({ hostname }) => hostname === "calendar.google.com"
     }),
     Object.freeze({
@@ -113,6 +114,38 @@
     return runtime.getURL(`icons/${iconFileName}`);
   }
 
+  function toDate(dateLike) {
+    const date = dateLike instanceof Date ? new Date(dateLike) : new Date(dateLike);
+
+    if (Number.isNaN(date.getTime())) {
+      throw new TypeError("Expected a valid date");
+    }
+
+    return date;
+  }
+
+  function getNow(env) {
+    return typeof env.now === "function" ? toDate(env.now()) : new Date();
+  }
+
+  function getIconFileName(rule, now = new Date()) {
+    if (rule.dynamicIcon !== "calendar-date") return rule.icon;
+
+    const day = String(toDate(now).getDate()).padStart(2, "0");
+    return `calendar-days/${day}.png`;
+  }
+
+  function millisecondsUntilNextDay(now = new Date()) {
+    const current = toDate(now);
+    const nextDay = new Date(
+      current.getFullYear(),
+      current.getMonth(),
+      current.getDate() + 1
+    );
+
+    return Math.max(1, nextDay.getTime() - current.getTime());
+  }
+
   function isIconLink(element) {
     const view = element && element.ownerDocument && element.ownerDocument.defaultView;
 
@@ -161,7 +194,8 @@
     const rule = getMatchingRule(env.location);
     if (!rule) return { applied: false, reason: "no-matching-rule" };
 
-    const expectedHref = getIconHref(runtime, rule.icon);
+    const iconFileName = getIconFileName(rule, getNow(env));
+    const expectedHref = getIconHref(runtime, iconFileName);
     const existing = currentExtensionIcon(head);
 
     if (existing && existing.href === expectedHref) {
@@ -176,7 +210,7 @@
 
       const link = doc.createElement("link");
       link.rel = "icon";
-      link.type = "image/svg+xml";
+      link.type = iconFileName.endsWith(".png") ? "image/png" : "image/svg+xml";
       link.href = expectedHref;
       link.dataset.legacyWorkspaceFavicon = "true";
       link.dataset.legacyWorkspaceApp = rule.name;
@@ -197,7 +231,38 @@
       return;
     }
 
-    setTimeout(() => applyLegacyFavicon(env), 0);
+    const setTimeoutImpl = env.setTimeout || setTimeout;
+    setTimeoutImpl(() => applyLegacyFavicon(env), 0);
+  }
+
+  function scheduleCalendarRefresh(env, rule = getMatchingRule(env.location)) {
+    if (!rule || rule.dynamicIcon !== "calendar-date") {
+      return { cancel() {} };
+    }
+
+    const setTimeoutImpl = env.setTimeout || setTimeout;
+    const clearTimeoutImpl = env.clearTimeout || clearTimeout;
+    let timerId;
+    let cancelled = false;
+
+    function scheduleNextRefresh() {
+      const delay = millisecondsUntilNextDay(getNow(env)) + 100;
+      timerId = setTimeoutImpl(() => {
+        if (cancelled) return;
+
+        applyLegacyFavicon(env);
+        scheduleNextRefresh();
+      }, delay);
+    }
+
+    scheduleNextRefresh();
+
+    return {
+      cancel() {
+        cancelled = true;
+        if (timerId !== undefined) clearTimeoutImpl(timerId);
+      }
+    };
   }
 
   function runContentScript(env = globalThis) {
@@ -205,10 +270,15 @@
     const MutationObserverImpl =
       env.MutationObserver || (env.window && env.window.MutationObserver);
 
-    applyLegacyFavicon(env);
+    const initialResult = applyLegacyFavicon(env);
+    const calendarRefresh = scheduleCalendarRefresh(env, initialResult.rule);
 
     if (!doc || !doc.head || !MutationObserverImpl) {
-      return { disconnect() {} };
+      return {
+        disconnect() {
+          calendarRefresh.cancel();
+        }
+      };
     }
 
     const observer = new MutationObserverImpl(() => scheduleApply(env));
@@ -217,7 +287,12 @@
       subtree: false
     });
 
-    return observer;
+    return {
+      disconnect() {
+        observer.disconnect();
+        calendarRefresh.cancel();
+      }
+    };
   }
 
   const api = {
@@ -225,11 +300,14 @@
     DEFAULT_RULES,
     applyLegacyFavicon,
     currentExtensionIcon,
+    getIconFileName,
     getIconHref,
     getMatchingRule,
     isIconLink,
+    millisecondsUntilNextDay,
     removeCompetingFavicons,
-    runContentScript
+    runContentScript,
+    scheduleCalendarRefresh
   };
 
   if (typeof module !== "undefined" && module.exports) {
@@ -239,4 +317,3 @@
 
   runContentScript(globalThis);
 })();
-

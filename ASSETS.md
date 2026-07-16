@@ -6,6 +6,16 @@ The maintainer has confirmed rights to use and distribute the bundled product fa
 
 The extension is also designed so users can build with replacement icon assets without committing those assets to git.
 
+The 31 PNG files under `icons/calendar-days/` are generated from
+`icons/calendar.svg`. They let Calendar tabs display the current local day
+without remote requests, storage, or a background service worker.
+
+Regenerate them with:
+
+```bash
+npm run generate:calendar-icons
+```
+
 For replacement icon packages, create a gitignored `private-icons/` directory with these filenames:
 
 - `gmail.svg`
@@ -30,6 +40,9 @@ npm run package:private
 ```
 
 The replacement icons are copied into the generated `dist/classic-workspace-tabs-<version>/` package only. They are not copied into tracked source files.
+
+When packaging with a replacement `calendar.svg`, the date-specific Calendar
+PNGs are regenerated after the private icon overlay is applied.
 
 The extension icon files, `icons/extension-*.png`, are generated from `store-assets/store-icon-128.png` so the installed extension icon matches the Chrome Web Store listing icon.
 

@@ -1,5 +1,5 @@
-import { existsSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 const root = process.cwd();
 const manifestPath = resolve(root, "manifest.json");
@@ -26,8 +26,36 @@ function validateMatch(pattern, context) {
   if (!pattern.startsWith("https://")) fail(`${context} must use https`);
 }
 
+function validateResource(resource) {
+  if (!resource.includes("*")) {
+    if (!existsSync(resolve(root, resource))) fail(`missing web accessible resource: ${resource}`);
+    return;
+  }
+
+  const [prefix, suffix] = resource.split("*");
+  const slashIndex = prefix.lastIndexOf("/");
+  const directoryPath = slashIndex === -1 ? "." : prefix.slice(0, slashIndex);
+  const filePrefix = slashIndex === -1 ? prefix : prefix.slice(slashIndex + 1);
+  const directory = resolve(root, directoryPath);
+
+  if (!existsSync(directory)) {
+    fail(`missing web accessible resource directory: ${dirname(resource)}`);
+    return;
+  }
+
+  const matches = readdirSync(directory).filter(
+    (entry) => entry.startsWith(filePrefix) && entry.endsWith(suffix)
+  );
+
+  if (matches.length === 0) fail(`web accessible resource wildcard matched no files: ${resource}`);
+}
+
 if (manifest.manifest_version !== 3) fail("manifest_version must be 3");
-if (manifest.name !== "Classic Workspace Tabs") fail("name mismatch");
+if (manifest.name !== "__MSG_extensionName__") fail("name must use the localized extensionName message");
+if (manifest.description !== "__MSG_extensionDescription__") {
+  fail("description must use the localized extensionDescription message");
+}
+if (manifest.default_locale !== "en") fail("default_locale must be en");
 if (manifest.version !== packageJson.version) fail("manifest version must match package.json");
 if (manifest.version !== packageLock.version) fail("manifest version must match package-lock.json");
 if (manifest.version !== packageLock.packages?.[""]?.version) {
@@ -86,13 +114,28 @@ for (const iconPath of manifestIconPaths) {
 
 for (const resourceBlock of manifest.web_accessible_resources || []) {
   for (const resource of resourceBlock.resources || []) {
-    if (!existsSync(resolve(root, resource))) fail(`missing web accessible resource: ${resource}`);
+    validateResource(resource);
   }
   for (const match of resourceBlock.matches || []) {
     validateMatch(match, `web accessible resource match ${match}`);
     if (!match.endsWith("/*")) {
       fail(`web accessible resource match must end with /* because Chrome only uses origins: ${match}`);
     }
+  }
+}
+
+for (const locale of ["en", "es", "de"]) {
+  const localePath = resolve(root, "_locales", locale, "messages.json");
+
+  if (!existsSync(localePath)) {
+    fail(`missing locale messages: ${locale}`);
+    continue;
+  }
+
+  const messages = JSON.parse(readFileSync(localePath, "utf8"));
+  if (!messages.extensionName?.message) fail(`${locale} extensionName message is required`);
+  if (!messages.extensionDescription?.message) {
+    fail(`${locale} extensionDescription message is required`);
   }
 }
 

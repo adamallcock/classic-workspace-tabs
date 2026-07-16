@@ -6,60 +6,98 @@ Before publishing or updating the listing, compare this copy with the live
 Chrome Web Store listing, `manifest.json`, `README.md`, and the release
 checklist in `docs/runbooks/2026-07-02-release-checklist.md`.
 
-## Name
+The extension package supplies the localized name and short description through
+`_locales/`. In the dashboard, select each supported language and paste the
+matching detailed description below. Do not add a list of Google product names
+to any description.
 
-Classic Workspace Tabs
+## English (`en`)
 
-## Short Description
+### Name
 
-Restore distinct Google Workspace tab icons with a tiny, privacy-first extension.
+Classic Tab Icons for Google Workspace™
 
-## Detailed Description
+### Short Description
 
-Classic Workspace Tabs restores distinct tab icons for supported Google Workspace apps, making it easier to tell Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Chat, Keep, Forms, and related tabs apart at a glance.
+Restores familiar pre-2026 Google Workspace tab icons with no permissions, tracking, or remote requests.
 
-The extension is intentionally small. It does one thing: it replaces the favicon link in supported Google Workspace pages with an icon bundled inside the extension.
+### Detailed Description
 
-Privacy and simplicity are the point:
+Classic Tab Icons for Google Workspace™ restores the familiar, app-specific favicon design used before 2026 so busy tab strips are easier to scan.
 
-- No analytics
-- No tracking
-- No server
-- No remote code
-- No account system
-- No settings sync
-- No browser history access
-- No cookie access
-- No bookmark access
-- No tab API access
-- No broad host permissions
-- No arbitrary website rules
-- No page content inspection
+Calendar tabs show today's date and update automatically after local midnight. Every icon is bundled inside the extension, so no outside server is contacted.
 
-The extension only runs on explicitly supported Google Workspace URLs. It only touches favicon link elements in the document head. It does not read emails, documents, calendar events, chats, files, contacts, page text, cookies, browser history, or bookmarks.
+Features:
 
-Supported apps:
+- Familiar, distinct tab icons that are easier to recognize at a glance
+- A Calendar favicon that displays the current local date
+- No Chrome extension permissions
+- No tracking, analytics, remote requests, account, popup, or settings
+- Explicit support for selected Google Workspace pages only
 
-- Gmail
-- Google Calendar
-- Google Drive
-- Google Docs
-- Google Sheets
-- Google Slides
-- Google Forms
-- Google Meet
-- Google Chat
-- Google Keep
-- Google Contacts
-- Google Tasks
-- Google Voice
-- Google Admin
+The extension only changes favicon link elements in the document head. It does not read emails, documents, events, chats, files, contacts, page text, cookies, browser history, or bookmarks.
 
-This project is not affiliated with, endorsed by, or sponsored by Google. Google Workspace product names and logos are trademarks of Google LLC.
+This project is not affiliated with, endorsed by, or sponsored by Google. Google Workspace and related names and logos are trademarks of Google LLC.
+
+## Spanish (`es`)
+
+### Name
+
+Iconos clásicos de pestañas para Google Workspace™
+
+### Short Description
+
+Restaura los iconos familiares anteriores a 2026 en las pestañas de Google Workspace, sin permisos ni seguimiento.
+
+### Detailed Description
+
+Iconos clásicos de pestañas para Google Workspace™ recupera el diseño familiar y específico de cada aplicación que se usaba antes de 2026, para que sea más fácil encontrar la pestaña correcta.
+
+La pestaña de Calendar muestra la fecha de hoy y se actualiza automáticamente después de la medianoche local. Todos los iconos están incluidos en la extensión, por lo que no se contacta con ningún servidor externo.
+
+Funciones:
+
+- Iconos familiares y distintos que se reconocen de un vistazo
+- Un icono de Calendar que muestra la fecha local actual
+- Sin permisos de extensiones de Chrome
+- Sin seguimiento, analíticas, solicitudes remotas, cuenta, ventana emergente ni ajustes
+- Compatibilidad explícita solo con páginas seleccionadas de Google Workspace
+
+La extensión solo cambia los enlaces de favicon del encabezado del documento. No lee correos, documentos, eventos, chats, archivos, contactos, texto de páginas, cookies, historial ni marcadores.
+
+Este proyecto no está afiliado, respaldado ni patrocinado por Google. Google Workspace y los nombres y logotipos relacionados son marcas de Google LLC.
+
+## German (`de`)
+
+### Name
+
+Klassische Tab-Symbole für Google Workspace™
+
+### Short Description
+
+Stellt vertraute Google Workspace-Tab-Symbole von vor 2026 wieder her - ohne Berechtigungen, Tracking oder Server.
+
+### Detailed Description
+
+Klassische Tab-Symbole für Google Workspace™ stellt das vertraute, app-spezifische Favicon-Design von vor 2026 wieder her. So lässt sich in einer vollen Tableiste der richtige Tab schneller erkennen.
+
+Der Kalender-Tab zeigt das heutige Datum und aktualisiert sich automatisch nach der lokalen Mitternacht. Alle Symbole sind in der Erweiterung enthalten, sodass kein externer Server kontaktiert wird.
+
+Funktionen:
+
+- Vertraute, klar unterscheidbare Tab-Symbole
+- Ein Kalender-Favicon mit dem aktuellen lokalen Datum
+- Keine Chrome-Erweiterungsberechtigungen
+- Kein Tracking, keine Analyse, keine externen Anfragen, kein Konto, Popup oder Einstellungsmenü
+- Nur ausdrücklich unterstützte Google Workspace-Seiten
+
+Die Erweiterung ändert ausschließlich Favicon-Links im Dokumentkopf. Sie liest keine E-Mails, Dokumente, Termine, Chats, Dateien, Kontakte, Seitentexte, Cookies, Browser-Verläufe oder Lesezeichen.
+
+Dieses Projekt ist weder mit Google verbunden noch von Google unterstützt oder gesponsert. Google Workspace sowie zugehörige Namen und Logos sind Marken von Google LLC.
 
 ## Single Purpose
 
-Restore distinct tab favicons on supported Google Workspace pages.
+Restore familiar tab favicons on supported Google Workspace pages.
 
 ## Permission Justification
 
@@ -75,7 +113,7 @@ The manifest uses explicit content script matches for supported Google Workspace
 
 ## Privacy Practices
 
-Classic Workspace Tabs does not collect, store, transmit, sell, or analyze user data.
+Classic Tab Icons for Google Workspace™ does not collect, store, transmit, sell, or analyze user data.
 
 The extension has no backend, no analytics, no tracking, no remote code, and no account system. It only replaces tab favicon links on supported Google Workspace pages using icon files bundled inside the extension.
 
@@ -105,7 +143,7 @@ Limited Use statement: not applicable because the extension does not collect or 
 
 ## Suggested Category
 
-Productivity
+Functionality & UI
 
 ## Distribution
 
@@ -122,19 +160,22 @@ No test account or credentials are required.
 To test:
 
 1. Install the extension in Chrome.
-2. Open a supported Google Workspace URL, such as Gmail, Calendar, Drive, Docs, Sheets, Slides, Meet, Chat, Keep, Contacts, Tasks, Voice, or Admin.
+2. Open a supported Google Workspace URL, such as Gmail or Calendar.
 3. Confirm the tab favicon is replaced with the bundled app-specific icon.
-4. Open an unsupported URL and confirm the extension does not change the favicon.
+4. On Calendar, confirm the favicon displays the current local day.
+5. Open an unsupported URL and confirm the extension does not change the favicon.
 
 ## Suggested Screenshots
 
 Use sanitized screenshots only. Do not show private email, calendar events, documents, chats, account names, profile photos, organization names, or browser history.
 
-Suggested screenshot set:
+Use the existing carefully designed screenshot and promotional assets. Do not
+replace them with synthetic browser mockups. Localized screenshots are optional
+for the initial Spanish and German listings; the small and marquee promo tiles
+cannot be localized in the dashboard.
 
-1. A Chrome tab strip showing several supported Workspace apps with distinct favicons.
-2. A minimal before/after comparison using empty or demo Workspace pages.
-3. The Chrome extension details page showing the narrow site access and no requested permissions.
+If localized screenshots are added later, translate only the concise headline
+within the existing source design and retain the same composition and quality.
 
 ## Store Submission Checklist
 

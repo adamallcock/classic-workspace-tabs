@@ -1,16 +1,14 @@
-# Classic Workspace Tabs
+# Classic Tab Icons for Google Workspace™
 
 [![CI](https://github.com/adamallcock/classic-workspace-tabs/actions/workflows/ci.yml/badge.svg)](https://github.com/adamallcock/classic-workspace-tabs/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/github/license/adamallcock/classic-workspace-tabs)](LICENSE)
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-1a73e8)](https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3)
 [![Permissions: none](https://img.shields.io/badge/permissions-none-188038)](manifest.json)
-[![Chrome Web Store: live](https://img.shields.io/badge/Chrome%20Web%20Store-live-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej)
+[![Chrome Web Store: live](https://img.shields.io/badge/Chrome%20Web%20Store-live-4285F4?logo=googlechrome&logoColor=white)](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej?utm_source=github&utm_medium=referral&utm_campaign=pre2026-icons)
 
-A tiny Chrome extension that restores distinct tab icons for supported Google Workspace apps.
+A tiny Chrome extension that restores familiar pre-2026 tab icons for supported Google Workspace apps.
 
-![Classic Workspace Tabs preview](store-assets/screenshot-1280x800.png)
-
-[Chrome Web Store listing](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej)
+[Chrome Web Store listing](https://chromewebstore.google.com/detail/bpminegnelljndeeolpelmhmdnajojej?utm_source=github&utm_medium=referral&utm_campaign=pre2026-icons)
 
 It is intentionally narrow:
 
@@ -24,7 +22,7 @@ It is intentionally narrow:
 - no page-body inspection
 - no arbitrary website rules
 
-The content script runs only on explicit Google Workspace URLs and only replaces favicon `<link>` elements in `document.head`.
+The content script runs only on explicit Google Workspace URLs and only replaces favicon `<link>` elements in `document.head`. The Calendar favicon displays the current local day and refreshes after midnight.
 
 ## Supported Apps
 
@@ -45,7 +43,17 @@ The content script runs only on explicit Google Workspace URLs and only replaces
 
 ## Privacy
 
-Classic Workspace Tabs does not collect, store, transmit, sell, or analyze any user data. It has no server, no analytics, no tracking, no remote code, and no account system. The extension only replaces the tab favicon on supported Google Workspace pages using icon files bundled inside the extension.
+Classic Tab Icons for Google Workspace™ does not collect, store, transmit, sell, or analyze any user data. It has no server, no analytics, no tracking, no remote code, and no account system. The extension only replaces the tab favicon on supported Google Workspace pages using icon files bundled inside the extension.
+
+## Languages
+
+Chrome metadata is localized in:
+
+- English
+- Spanish
+- German
+
+The Chrome Web Store detailed descriptions and project landing page use the same three languages.
 
 See [PRIVACY.md](PRIVACY.md).
 
@@ -81,6 +89,12 @@ npm run package
 ```
 
 `npm run package` creates a local release zip under `dist/`. The `dist/` folder is ignored and should not be committed.
+
+The Calendar date icons are generated from the bundled Calendar SVG:
+
+```bash
+npm run generate:calendar-icons
+```
 
 For release-oriented local verification, also run:
 

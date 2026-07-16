@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://adamallcock.github.io/classic-workspace-tabs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adamallcock.github.io/classic-workspace-tabs/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://adamallcock.github.io/classic-workspace-tabs/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://adamallcock.github.io/classic-workspace-tabs/de/"/>
+  </url>
+  <url>
+    <loc>https://adamallcock.github.io/classic-workspace-tabs/es/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adamallcock.github.io/classic-workspace-tabs/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://adamallcock.github.io/classic-workspace-tabs/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://adamallcock.github.io/classic-workspace-tabs/de/"/>
+  </url>
+  <url>
+    <loc>https://adamallcock.github.io/classic-workspace-tabs/de/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://adamallcock.github.io/classic-workspace-tabs/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://adamallcock.github.io/classic-workspace-tabs/es/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://adamallcock.github.io/classic-workspace-tabs/de/"/>
+  </url>
+</urlset>

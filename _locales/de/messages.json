@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Klassische Tab-Symbole für Google Workspace™",
+    "description": "Der Name der Erweiterung in Chrome und im Chrome Web Store."
+  },
+  "extensionDescription": {
+    "message": "Stellt vertraute Google Workspace-Tab-Symbole von vor 2026 wieder her - ohne Berechtigungen, Tracking oder Server.",
+    "description": "Eine kurze Zusammenfassung der Erweiterung."
+  }
+}

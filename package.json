@@ -1,12 +1,15 @@
 {
   "name": "classic-workspace-tabs",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
-  "description": "Restores distinct Google Workspace tab icons in Chrome.",
+  "description": "Restores familiar pre-2026 Google Workspace tab icons in Chrome.",
   "scripts": {
     "test": "node --test test/*.test.mjs",
     "validate": "node scripts/validate-extension.mjs",
+    "generate:calendar-icons": "node scripts/generate-calendar-icons.mjs",
     "generate:icons": "node scripts/generate-extension-icons.mjs",
+    "site:build": "node scripts/build-site.mjs",
+    "site:validate": "node scripts/validate-site.mjs",
     "smoke:chrome": "node scripts/chrome-smoke.mjs",
     "package": "npm run validate && npm test && node scripts/package-extension.mjs",
     "package:private": "npm run validate && npm test && node scripts/package-extension.mjs --private-icons private-icons"

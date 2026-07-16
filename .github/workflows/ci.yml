@@ -30,3 +30,8 @@ jobs:
       - name: Build package
         run: npm run package
 
+      - name: Build landing page
+        run: npm run site:build
+
+      - name: Validate landing page
+        run: npm run site:validate
