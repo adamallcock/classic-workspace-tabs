@@ -12,13 +12,12 @@ await mkdir(iconOutputDir, { recursive: true });
 
 for (const icon of [
   "gmail.svg",
-  "calendar.svg",
   "drive.svg",
-  "docs.svg",
-  "sheets.svg",
-  "slides.svg",
+  "docs.png",
+  "sheets.png",
+  "slides.png",
   "meet.svg",
-  "chat.svg"
+  "chat.png"
 ]) {
   await cp(resolve(root, "icons", icon), resolve(iconOutputDir, icon));
 }

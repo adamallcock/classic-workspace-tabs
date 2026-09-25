@@ -11,7 +11,7 @@
     }),
     Object.freeze({
       name: "Google Calendar",
-      icon: "calendar.svg",
+      icon: "calendar-days/01.png",
       dynamicIcon: "calendar-date",
       matches: ({ hostname }) => hostname === "calendar.google.com"
     }),
@@ -22,25 +22,25 @@
     }),
     Object.freeze({
       name: "Google Docs",
-      icon: "docs.svg",
+      icon: "docs.png",
       matches: ({ hostname, pathname }) =>
         hostname === "docs.google.com" && pathname.startsWith("/document/")
     }),
     Object.freeze({
       name: "Google Sheets",
-      icon: "sheets.svg",
+      icon: "sheets.png",
       matches: ({ hostname, pathname }) =>
         hostname === "docs.google.com" && pathname.startsWith("/spreadsheets/")
     }),
     Object.freeze({
       name: "Google Slides",
-      icon: "slides.svg",
+      icon: "slides.png",
       matches: ({ hostname, pathname }) =>
         hostname === "docs.google.com" && pathname.startsWith("/presentation/")
     }),
     Object.freeze({
       name: "Google Forms",
-      icon: "forms.svg",
+      icon: "forms.png",
       matches: ({ hostname, pathname }) =>
         hostname === "docs.google.com" && pathname.startsWith("/forms/")
     }),
@@ -51,12 +51,12 @@
     }),
     Object.freeze({
       name: "Google Chat",
-      icon: "chat.svg",
+      icon: "chat.png",
       matches: ({ hostname }) => hostname === "chat.google.com"
     }),
     Object.freeze({
       name: "Google Keep",
-      icon: "keep.svg",
+      icon: "keep.png",
       matches: ({ hostname }) => hostname === "keep.google.com"
     }),
     Object.freeze({

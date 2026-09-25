@@ -179,7 +179,7 @@ try {
     };
   });
 
-  if (sheets.app !== "Google Sheets" || !sheets.href.endsWith("/icons/sheets.svg")) {
+  if (sheets.app !== "Google Sheets" || !sheets.href.endsWith("/icons/sheets.png")) {
     throw new Error(`Sheets smoke failed: ${JSON.stringify(sheets)}`);
   }
 

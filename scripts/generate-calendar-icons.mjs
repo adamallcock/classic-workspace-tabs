@@ -1,18 +1,23 @@
-import { mkdir, readFile } from "node:fs/promises";
+import { cp, mkdir, readFile } from "node:fs/promises";
 import { resolve } from "node:path";
 import sharp from "sharp";
 
 const rootFlagIndex = process.argv.indexOf("--root");
 const rootArg = rootFlagIndex === -1 ? null : process.argv[rootFlagIndex + 1];
+const privateSvgFlagIndex = process.argv.indexOf("--private-svg");
+const privateSvgArg = privateSvgFlagIndex === -1 ? null : process.argv[privateSvgFlagIndex + 1];
 
 if (rootFlagIndex !== -1 && (!rootArg || rootArg.startsWith("--"))) {
   throw new Error("missing path after --root");
 }
+if (privateSvgFlagIndex !== -1 && (!privateSvgArg || privateSvgArg.startsWith("--"))) {
+  throw new Error("missing path after --private-svg");
+}
 
 const root = rootArg ? resolve(process.cwd(), rootArg) : process.cwd();
-const sourcePath = resolve(root, "icons", "calendar.svg");
 const outputDir = resolve(root, "icons", "calendar-days");
-const source = await readFile(sourcePath);
+const sourceDir = resolve(process.cwd(), "source-assets", "calendar-days");
+const privateSvg = privateSvgArg ? await readFile(resolve(process.cwd(), privateSvgArg)) : null;
 
 await mkdir(outputDir, { recursive: true });
 
@@ -38,12 +43,18 @@ function dateOverlay(day) {
 
 for (let day = 1; day <= 31; day += 1) {
   const fileName = `${String(day).padStart(2, "0")}.png`;
+  const output = resolve(outputDir, fileName);
 
-  await sharp(source, { density: 256 })
+  if (!privateSvg) {
+    await cp(resolve(sourceDir, fileName), output);
+    continue;
+  }
+
+  await sharp(privateSvg, { density: 256 })
     .resize(128, 128)
     .composite([{ input: dateOverlay(day), blend: "over" }])
     .png({ compressionLevel: 9, adaptiveFiltering: true })
-    .toFile(resolve(outputDir, fileName));
+    .toFile(output);
 }
 
 console.log(`Generated 31 Calendar date icons in ${outputDir}.`);
