@@ -1,7 +1,5 @@
-# Icon Assets
+# Runtime Icon Assets
 
-The product favicon files in this directory are bundled classic Google Workspace-style SVGs with confirmed rights for use and distribution in this project.
+The extension uses local SVGs for Gmail, Drive, Meet, Contacts, Tasks, Voice, and Admin; PNGs for Docs, Sheets, Slides, Forms, Chat, and Keep; and 31 local PNGs for Calendar dates. The PNGs use the Google-hosted favicon shapes recorded in [ASSETS.md](../ASSETS.md). The extension icon files are generated from `store-assets/store-icon-128.png`.
 
-For packages with replacement icons, put your own icon files in the gitignored `private-icons/` directory and run `npm run package:private`. That overlays those files into `dist/` without changing tracked source files.
-
-The `extension-*.png` files are generated from `store-assets/store-icon-128.png` and should match the Chrome Web Store listing icon.
+Run `npm run generate:calendar-icons` to copy the offline Calendar source set into this directory. `npm run package:private` overlays private SVG inputs into the generated package as described in [ASSETS.md](../ASSETS.md).

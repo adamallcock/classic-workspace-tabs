@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.1 - 2026-09-24 (release candidate)
+
+- Replaced the Docs, Sheets, Slides, Forms, Keep, and Chat product logos with the original compact tab favicon shapes.
+- Replaced the generated Calendar date art with Google's 31 date-specific favicon designs while retaining local-day selection and midnight refresh.
+- Kept favicon files local, the same explicit URL scope, and zero extension permissions.
+- Updated the landing page and store artwork to show the corrected tab designs.
+- Kept the optional private SVG package path working for all 14 apps.
+
 ## 0.2.0 - 2026-07-16
 
 - Renamed the extension to describe its purpose directly in Chrome Web Store search.

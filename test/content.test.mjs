@@ -31,13 +31,13 @@ test("matches each supported Google Workspace URL to the expected icon", () => {
     ["https://mail.google.com/mail/u/0/#inbox", "gmail.svg"],
     ["https://calendar.google.com/calendar/u/0/r", "calendar-days/16.png"],
     ["https://drive.google.com/drive/my-drive", "drive.svg"],
-    ["https://docs.google.com/document/d/abc/edit", "docs.svg"],
-    ["https://docs.google.com/spreadsheets/d/abc/edit", "sheets.svg"],
-    ["https://docs.google.com/presentation/d/abc/edit", "slides.svg"],
-    ["https://docs.google.com/forms/d/abc/edit", "forms.svg"],
+    ["https://docs.google.com/document/d/abc/edit", "docs.png"],
+    ["https://docs.google.com/spreadsheets/d/abc/edit", "sheets.png"],
+    ["https://docs.google.com/presentation/d/abc/edit", "slides.png"],
+    ["https://docs.google.com/forms/d/abc/edit", "forms.png"],
     ["https://meet.google.com/abc-defg-hij", "meet.svg"],
-    ["https://chat.google.com/room/abc", "chat.svg"],
-    ["https://keep.google.com/u/0/", "keep.svg"],
+    ["https://chat.google.com/room/abc", "chat.png"],
+    ["https://keep.google.com/u/0/", "keep.png"],
     ["https://contacts.google.com/person/abc", "contacts.svg"],
     ["https://tasks.google.com/embed/list/~default", "tasks.svg"],
     ["https://voice.google.com/u/0/messages", "voice.svg"],
@@ -57,6 +57,12 @@ test("uses the local calendar day and calculates the next local midnight", () =>
 
   assert.equal(core.getIconFileName(calendarRule, lateEvening), "calendar-days/16.png");
   assert.equal(core.millisecondsUntilNextDay(lateEvening), 30_000);
+
+  const yearEnd = new Date(2026, 11, 31, 23, 59, 30, 0);
+  const nextYear = new Date(2027, 0, 1, 0, 0, 0, 0);
+  assert.equal(core.getIconFileName(calendarRule, yearEnd), "calendar-days/31.png");
+  assert.equal(core.getIconFileName(calendarRule, nextYear), "calendar-days/01.png");
+  assert.equal(core.millisecondsUntilNextDay(yearEnd), 30_000);
 });
 
 test("does not match unsupported Google and non-Google URLs", () => {
@@ -212,7 +218,8 @@ test("mutation observer restores the extension favicon when a page adds a compet
 
   const favicons = iconLinks(dom.window.document);
   assert.equal(favicons.length, 1);
-  assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/sheets.svg");
+  assert.equal(favicons[0].href, "chrome-extension://classic-workspace-tabs/icons/sheets.png");
+  assert.equal(favicons[0].type, "image/png");
 
   controller.disconnect();
 });

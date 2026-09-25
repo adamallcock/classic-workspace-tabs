@@ -169,8 +169,8 @@ To test:
 
 Use sanitized screenshots only. Do not show private email, calendar events, documents, chats, account names, profile photos, organization names, or browser history.
 
-Use the existing carefully designed screenshot and promotional assets. Do not
-replace them with synthetic browser mockups. Localized screenshots are optional
+Use the updated screenshot and promotional assets showing the corrected compact
+favicons. Localized screenshots are optional
 for the initial Spanish and German listings; the small and marquee promo tiles
 cannot be localized in the dashboard.
 

@@ -65,7 +65,7 @@ See [PRIVACY.md](PRIVACY.md).
 
 ## Icon Assets
 
-This repository ships bundled classic Google Workspace-style product favicons with confirmed rights for this project, so the extension is ready to load locally or package for distribution. You can also put replacement SVG files in a gitignored `private-icons/` folder and run `npm run package:private`. That overlays the replacement icons into `dist/classic-workspace-tabs-<version>/` without changing tracked source files.
+The extension bundles its favicons locally. Version 0.2.1 replaces seven incorrect logo designs with Google-hosted tab favicon shapes for Docs, Sheets, Slides, Forms, Keep, Chat, and Calendar. The replacement files' redistribution basis must be confirmed before public release. You can put your own replacement SVG files in a gitignored `private-icons/` folder and run `npm run package:private`; this changes only the generated package under `dist/`.
 
 See [ASSETS.md](ASSETS.md).
 
@@ -96,7 +96,7 @@ npm run package
 
 `npm run package` creates a local release zip under `dist/`. The `dist/` folder is ignored and should not be committed.
 
-The Calendar date icons are generated from the bundled Calendar SVG:
+The Calendar date icons are copied from the checked-in, native-size favicon source set without network access:
 
 ```bash
 npm run generate:calendar-icons
