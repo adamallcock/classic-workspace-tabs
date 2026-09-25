@@ -1,6 +1,6 @@
 # Icon Assets
 
-This repository bundles favicon files locally. The content script never downloads icons at runtime. The maintainer previously confirmed project distribution rights for the original SVG assets listed below. Redistribution of the new Google-hosted favicon replacements for version 0.2.1 is awaiting maintainer confirmation before publication.
+This repository bundles favicon files locally. The content script never downloads icons at runtime. The maintainer has confirmed project distribution rights for both the retained SVG assets and the new favicon replacements in version 0.2.1, including distribution in this public repository and the Chrome Web Store package.
 
 ## Favicon replacements in 0.2.1
 
@@ -46,4 +46,4 @@ The retained bundled product SVGs came from Wikimedia Commons file pages and hav
 
 Do not load favicons from Wikipedia, Wikimedia Commons, Google-hosted URLs, CDNs, or other third-party hosts at runtime. Bundled local assets keep the extension network-free and independent of remote URL stability.
 
-Before publishing a replacement favicon, confirm the replacement asset can be redistributed in this public repository and in the Chrome Web Store package. Google Workspace product names and logos are trademarks of Google LLC. This project is not affiliated with, endorsed by, or sponsored by Google.
+Before publishing any future replacement favicon, confirm it can be redistributed in this public repository and in the Chrome Web Store package. Google Workspace product names and logos are trademarks of Google LLC. This project is not affiliated with, endorsed by, or sponsored by Google.

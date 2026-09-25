@@ -65,7 +65,7 @@ See [PRIVACY.md](PRIVACY.md).
 
 ## Icon Assets
 
-The extension bundles its favicons locally. Version 0.2.1 replaces seven incorrect logo designs with Google-hosted tab favicon shapes for Docs, Sheets, Slides, Forms, Keep, Chat, and Calendar. The replacement files' redistribution basis must be confirmed before public release. You can put your own replacement SVG files in a gitignored `private-icons/` folder and run `npm run package:private`; this changes only the generated package under `dist/`.
+The extension bundles its favicons locally. Version 0.2.1 replaces seven incorrect logo designs with Google-hosted tab favicon shapes for Docs, Sheets, Slides, Forms, Keep, Chat, and Calendar. The maintainer has confirmed distribution rights for these replacement files in this project. You can put your own replacement SVG files in a gitignored `private-icons/` folder and run `npm run package:private`; this changes only the generated package under `dist/`.
 
 See [ASSETS.md](ASSETS.md).
 
