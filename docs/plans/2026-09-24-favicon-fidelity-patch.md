@@ -2,14 +2,14 @@
 title: Pre-2026 favicon fidelity patch
 date: 2026-09-24
 type: plan
-status: implementing
+status: pending-review
 ---
 
 # Goal
 
 Prepare a source candidate for version 0.2.1 that restores the actual small pre-2026 tab favicon shapes on the supported Google Workspace pages. Keep the extension's existing URL scope, local-only assets, zero permissions, and Calendar's local-date behavior.
 
-This plan is being implemented as a local 0.2.1 release candidate. The [release checklist](../runbooks/2026-07-02-release-checklist.md) governs qualification and store submission.
+The 0.2.1 source is merged and the Chrome Web Store update has been submitted for review. The [release checklist](../runbooks/2026-07-02-release-checklist.md) governs publication checks after Google approves it.
 
 ## Asset decisions
 
@@ -60,4 +60,10 @@ Qualifying a local 0.2.1 source/package does not update the installed extension,
 - The six static favicon PNGs and 31 Calendar date PNGs are in the local 0.2.1 source candidate. The Calendar generator copies the offline source set; private packaging still accepts the 14 SVG inputs and renders its own date set.
 - `npm run validate`, `npm test`, `npm run package`, both source and packaged `npm run smoke:chrome`, `npm run site:build`, and `npm run site:validate` passed locally. The source and packaged Chrome tests needed an unsandboxed Chromium launch because Chromium aborted before page load inside the filesystem sandbox.
 - The ZIP contains the declared resources and no superseded SVGs, private inputs, or source archive. Store imagery and the site social preview show the compact favicon designs.
-- The maintainer confirmed on 2026-09-25 that project distribution rights cover the replacement files in the public repository and Chrome Web Store package. The live listing still displayed 0.2.0 at the last check, and store dashboard access is awaiting Google passkey re-verification. The 0.2.1 candidate has not yet been pushed or submitted.
+- The maintainer confirmed on 2026-09-25 that project distribution rights cover the replacement files in the public repository and Chrome Web Store package.
+
+## Store submission (2026-09-25)
+
+- The 0.2.1 source and updated store artwork were merged through [PR #2](https://github.com/adamallcock/classic-workspace-tabs/pull/2). The landing page deployed with the corrected artwork.
+- The Chrome Web Store accepted the 0.2.1 ZIP and the replacement global screenshot, small promo tile, and marquee promo tile. English, German, and Spanish detailed descriptions match `STORE_LISTING.md`; the existing public/free/all-regions distribution and no-data privacy disclosures were retained.
+- The developer dashboard confirmed "Your extension was submitted for review" and then showed the 0.2.1 draft as pending review. Automatic publication after approval was selected. Version 0.2.0 remains the published package until Google completes review; verify the public listing before claiming 0.2.1 is live.
